@@ -13,6 +13,16 @@
 			<div class="col-md-4">
 				<h3>{{item.head}}</h3>
 				<p>{{item.desc}}</p>
+				<p>
+					{% if item.start %}
+					{{item.start}} - 
+					{% endif %}
+					{% if item.stop %}
+					{{item.stop}}
+					{% elif item.start %}
+					present
+					{% endif %}
+				</p>
 				{% if item.url %}
 				<p><a class="btn btn-info btn-sm right" target=new href="{{item.url}}" role="button">View details &raquo;</a></p>
 				{% endif %}
@@ -24,6 +34,16 @@
 			<div class="col-md-4">
 				<h3>{{item.head}}</h3>
 				<p>{{item.desc}}</p>
+				<p>
+					{% if item.start %}
+					{{item.start}} - 
+					{% endif %}
+					{% if item.stop %}
+					{{item.stop}}
+					{% elif item.start %}
+					present
+					{% endif %}
+				</p>
 				{% if item.url %}
 				<p><a class="btn btn-info btn-sm right" target=new href="{{item.url}}" role="button">View details &raquo;</a></p>
 				{% endif %}
@@ -35,6 +55,16 @@
 			<div class="col-md-4">
 				<h3>{{item.head}}</h3>
 				<p>{{item.desc}}</p>
+				<p>
+					{% if item.start %}
+					{{item.start}} - 
+					{% endif %}
+					{% if item.stop %}
+					{{item.stop}}
+					{% elif item.start %}
+					present
+					{% endif %}
+				</p>
 				{% if item.url %}
 				<p><a class="btn btn-info btn-sm right" target=new href="{{item.url}}" role="button">View details &raquo;</a></p>
 				{% endif %}
