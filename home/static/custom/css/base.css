@@ -1,0 +1,29 @@
+body{
+	/*background-color: darkslategray;*/
+}
+
+#main-sack{
+	margin-top: 2%;
+	margin-left: 10%;
+	margin-right: 10%;
+	color: #fff;
+}
+
+.navbar{
+	background-color: transparent;
+	background: transparent;
+	border-color: transparent;
+}
+
+.navbar-default .navbar-brand{
+	color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  color: #555;
+  background-color: rgba(231, 231, 231, 0);
+}

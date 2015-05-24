@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+	{% block body %}
+		<!-- <div class="container"> -->
+			<div class="jumbotron">
+				<h1>{{heading}}</h1>
+				<p>{{description}}</p>
+			</div>
+		<!-- </div> -->
+
+		<div class="row prosearch">
+			{% for item in prosearch %}
+			<div class="col-md-4">
+				<h3>{{item.head}}</h3>
+				<p>{{item.desc}}</p>
+				{% if item.url %}
+				<p><a class="btn btn-info btn-sm right" target=new href="{{item.url}}" role="button">View details &raquo;</a></p>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</div>
+		<div class="row education">
+			{% for item in education %}
+			<div class="col-md-4">
+				<h3>{{item.head}}</h3>
+				<p>{{item.desc}}</p>
+				{% if item.url %}
+				<p><a class="btn btn-info btn-sm right" target=new href="{{item.url}}" role="button">View details &raquo;</a></p>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</div>
+		<div class="row work">
+			{% for item in work %}
+			<div class="col-md-4">
+				<h3>{{item.head}}</h3>
+				<p>{{item.desc}}</p>
+				{% if item.url %}
+				<p><a class="btn btn-info btn-sm right" target=new href="{{item.url}}" role="button">View details &raquo;</a></p>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</div>
+	{% endblock %}
+
+	{% block staticfiles %}
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static "custom/css/home.css" %}">
+	<script src="{% static "custom/js/home.js" %}"></script>
+	{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="device-width, initial-scale=1">
+	{% load staticfiles %}
+	<title>{{title}}</title>
+	<link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "custom/css/base.css" %}">
+</head>
+<body style="background-color: {{bgColor}}">
+	<div id="main-sack">
+		<nav class = "navbar navbar-default" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+	        		<span class="sr-only">Toggle navigation</span>
+	        		<span class="icon-bar"></span>
+	        		<span class="icon-bar"></span>
+	        		<span class="icon-bar"></span>
+	      		</button>
+				<a class="navbar-brand" href="/">Home</a>
+			</div>
+			<div id = "example-navbar-collapse" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Links <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#" onclick=menuSelect(".prosearch") id="project-link"><span class="glyphicon glyphicon-cog"></span> Projects &amp Research</a></li>
+							<li><a href="#" onclick=menuSelect(".education") id="edu-link"><span class="glyphicon glyphicon-book"></span> Education</a></li>
+							<li><a href="#" onclick=menuSelect(".work") id="work-link"><span class="glyphicon glyphicon-briefcase"></span> Work</a></li>
+							<li class="divider"></li>
+							<li><a href="#"><span class="glyphicon glyphicon-hourglass"></span> Under Construction</a></li>
+							<li class="divider"></li>
+							<li><a href="http://www.endoftheinternet.com/"><span class="glyphicon glyphicon-ban-circle"></span> END</a></li>
+						</ul>
+					</li>
+					<li><a id="date-holder"><span class="glyphicon glyphicon-calendar"></span> {{datetime}}</a></li>
+					
+	            </ul>
+			</div>
+		</nav>
+		{% block body %}
+		{% endblock %}
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	{% block staticfiles %}
+	{% endblock %}
+	<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+</body>
+</html>
