@@ -1,1 +1,1 @@
-web: gunicorn tuftsbuzz.wsgi
+web: gunicorn config.wsgi
