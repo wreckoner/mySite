@@ -27,3 +27,16 @@ body{
   color: #555;
   background-color: rgba(231, 231, 231, 0);
 }
+
+.footer{
+	position: fixed;
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+	bottom: 0;
+	color: #fff;
+}
+
+.footer a{
+	color: #fe3;
+}
