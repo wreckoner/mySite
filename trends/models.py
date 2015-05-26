@@ -10,3 +10,13 @@ class TwitterToken(models.Model):
 
 	def __repr__(self):
 		return self.consumerKey
+
+
+class TwitterTrend(models.Model):
+	location_id = models.IntegerField(primary_key=True)
+	trends = models.TextField(blank = False)
+	location = models.CharField(max_length=50, blank=False)
+	created_at = models.DateTimeField(null=False, blank=False)
+
+	def __repr__(self):
+		return ' - '.join([self.createdAt])

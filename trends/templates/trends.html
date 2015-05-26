@@ -7,9 +7,10 @@
 	{% load staticfiles %}
 	<title>{{title}}</title>
 	<link rel="stylesheet" type="text/css" href="{% static "bootstrap/css/bootstrap.min.css" %}">
-	<link rel="stylesheet" type="text/css" href="{% static "custom/css/base.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "custom/css/trends.css" %}">
+	<title></title>
 </head>
-<body style="background-color: {{bgColor}}">
+<body>
 	<div id="main-sack">
 		<nav class = "navbar navbar-default" role="navigation">
 			<div class="navbar-header">
@@ -19,7 +20,7 @@
 	        		<span class="icon-bar"></span>
 	        		<span class="icon-bar"></span>
 	      		</button>
-				<a class="navbar-brand" href="/">Home</a>
+				<a class="navbar-brand" href="">Trends</a>
 			</div>
 			<div id = "example-navbar-collapse" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -29,31 +30,25 @@
 					<li>
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Links <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#" onclick=menuSelect(".prosearch") id="project-link"><span class="glyphicon glyphicon-cog"></span> Projects &amp Research</a></li>
-							<li><a href="#" onclick=menuSelect(".education") id="edu-link"><span class="glyphicon glyphicon-book"></span> Education</a></li>
-							<li><a href="#" onclick=menuSelect(".work") id="work-link"><span class="glyphicon glyphicon-briefcase"></span> Work</a></li>
-							<li class="divider"></li>
-							<li><a href="trends"><span class="glyphicon glyphicon-stats"></span> Trends</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-hourglass"></span> Under Construction</a></li>
+							<li><a href="/" id="home-link"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 							<li class="divider"></li>
 							<li><a href="http://www.endoftheinternet.com/"><span class="glyphicon glyphicon-ban-circle"></span> END</a></li>
 						</ul>
 					</li>
 					<li><a id="date-holder"><span class="glyphicon glyphicon-calendar"></span> </a></li>
-					
 	            </ul>
 			</div>
 		</nav>
-		{% block body %}
-		{% endblock %}
 	</div>
+	{{twitter_status}}
+	{{twitter}}
+	<hr>
+	{{time_taken}}
 	<div class="footer">
 		Built using Django. Hosted on Heroku. Bootstrap CSS. <a href="https://github.com/wreckoner/mySite" target="blank">Github Repo</a>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript">$("#date-holder").append((new Date()).toDateString())</script>
-	{% block staticfiles %}
-	{% endblock %}
 	<script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
 </body>
 </html>

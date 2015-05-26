@@ -1,0 +1,11 @@
+#main-sack{
+
+}
+
+.footer{
+	bottom: 0;
+	width: 100%;
+	position: fixed;
+	font-size: 12px;
+	text-align: center;
+}
