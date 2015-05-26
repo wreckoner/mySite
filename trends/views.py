@@ -27,7 +27,7 @@ def trends(requests):
 			context[u'twitter'] = data
 			TwitterTrend(location_id=data['locations'][0]['woeid'], trends=data, location=data['locations'][0]['name'], created_at=dateparse.parse_datetime(data['created_at'])).save()
 		except Exception, e:
-			context[u'twitter'] = e[0]['message']
+			context[u'twitter'] = str(e)
 		finally:
 			context[u'twitter_status'] = u'Retrieve trends from Twitter API and updated database.'
 	else:
