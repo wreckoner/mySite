@@ -14,6 +14,6 @@ def home(requests):
 	context['work'] = [{'head':x.heading, 'desc':x.description, 'url':x.url, 'start':x.start, 'stop':x.stop} for x in db.objects.filter(category='WR')]
 	context['education'] = [{'head':x.heading, 'desc':x.description, 'url':x.url, 'start':x.start, 'stop':x.stop} for x in db.objects.filter(category='ED')]
 	context['prosearch'] = [{'head':x.heading, 'desc':x.description, 'url':x.url, 'start':x.start, 'stop':x.stop} for x in db.objects.filter(category='PR')]
-	background_colors = ['darkolivegreen', 'darkslategray', 'firebrick', 'indigo', 'slategray', 'olivedrab', 'teal', 'black', 'steelblue', 'forestgreen', 'darkgoldenrod', 'mediumorchid', 'darkslateblue', 'indianred', 'cornflowerblue', 'burlywood']
+	background_colors = ['darkolivegreen', 'darkslategray', 'firebrick', 'indigo', 'slategray', 'olivedrab', 'teal', 'black', 'steelblue', 'forestgreen', 'darkgoldenrod', 'mediumorchid', 'darkslateblue', 'indianred', 'cornflowerblue']
 	context['bgColor'] = random.choice(background_colors)
 	return render(requests, template, context)

@@ -27,10 +27,10 @@ def trends(requests):
 			context[u'twitter'] = data
 			TwitterTrend().clean()
 			TwitterTrend(location_id=data['locations'][0]['woeid'], trends=data, location=data['locations'][0]['name'], created_at=dateparse.parse_datetime(data['created_at'])).save()
+			context[u'twitter_status'] = u'Retrieved trends from Twitter API and updated database.'
 		except Exception, e:
 			context[u'twitter'] = str(e)
-		finally:
-			context[u'twitter_status'] = u'Retrieve trends from Twitter API and updated database.'
+			context[u'twitter_status'] = u'Failed to retrieve trends.'			
 	else:
 		context[u'twitter'] = TwitterTrend.objects.filter(location_id=1)[0].trends
 		context[u'twitter_status'] = 'Trends retrieved within last 30 minutes. Showing cached result.'
