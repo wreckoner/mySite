@@ -25,6 +25,7 @@ def trends(requests):
 			api = tweepy.API(auth)
 			data = api.trends_place(1)[0]
 			context[u'twitter'] = data
+			TwitterTrend().clean()
 			TwitterTrend(location_id=data['locations'][0]['woeid'], trends=data, location=data['locations'][0]['name'], created_at=dateparse.parse_datetime(data['created_at'])).save()
 		except Exception, e:
 			context[u'twitter'] = str(e)
