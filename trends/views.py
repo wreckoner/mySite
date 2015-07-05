@@ -1,10 +1,13 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.utils import timezone, dateparse
-from django.core.serializers.json import DjangoJSONEncoder
 from datetime import timedelta
+import traceback
+
+from django.shortcuts import render
+from django.http import JsonResponse
+from django.utils import timezone, dateparse
+import tweepy
+
 from .models import TwitterToken, TwitterTrend, TwitterAvailableWoeid
-import tweepy, traceback, pprint, json
+
 
 # Create your views here.
 def _trends(requests):
@@ -37,20 +40,24 @@ def _trends(requests):
 	context['time_taken'] = timezone.now() - start_time
 	return render(requests, template, context)
 
-def trends(requests):
+def trends(request):
 	template = 'trends.html'
 	context = {u'title' : u'Social Network Trends'}
 	woeids = TwitterAvailableWoeid.objects.values_list('woeid', flat=True)
 	context['woeids'] = woeids
-	return render(requests, template, context)
+	return render(request, template, context)
 
 def update_woeids(requests):
 	u'''Queries the Twitter API for list of available trends and stores the WOEIDS to database.
 		If database has been updated within last 12 hours, returns without querying. '''
 	TIME_SPAN_SECONDS = 12*60*60		# Time span of 12 hrs
 	start_time = timezone.now()
-	time_lapse = start_time - TwitterAvailableWoeid.objects.all()[:1].get().created_at
-	status = {}
+	try:
+		# Raises exception when accessing empty database.
+		time_lapse = start_time - TwitterAvailableWoeid.objects.all()[:1].get().created_at
+	except Exception, e:
+		time_lapse = timedelta(seconds=TIME_SPAN_SECONDS+1)
+
 	if time_lapse.seconds > TIME_SPAN_SECONDS:
 		try:
 			tokens = TwitterToken.objects.all()[0]

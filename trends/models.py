@@ -20,10 +20,3 @@ class TwitterTrend(models.Model):
 
 	def __repr__(self):
 		return ' - '.join(map(str, [self.location_id, self.created_at, self.location]))
-
-class TwitterAvailableWoeid(models.Model):
-	woeid = models.IntegerField(primary_key=True)
-	created_at = models.DateTimeField(auto_now=True)
-
-	def __repr__(self):
-		return ' - '.join(map(str, [self.woeid, self.created_at]))
