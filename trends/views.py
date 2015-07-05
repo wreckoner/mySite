@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.utils import timezone, dateparse
 import tweepy
 
-from .models import TwitterToken, TwitterTrend, TwitterAvailableWoeid
+from .models import TwitterToken, TwitterTrend
 
 
 # Create your views here.
@@ -43,42 +43,7 @@ def _trends(requests):
 def trends(request):
 	template = 'trends.html'
 	context = {u'title' : u'Social Network Trends'}
-	woeids = TwitterAvailableWoeid.objects.values_list('woeid', flat=True)
-	context['woeids'] = woeids
 	return render(request, template, context)
-
-def update_woeids(requests):
-	u'''Queries the Twitter API for list of available trends and stores the WOEIDS to database.
-		If database has been updated within last 12 hours, returns without querying. '''
-	TIME_SPAN_SECONDS = 12*60*60		# Time span of 12 hrs
-	start_time = timezone.now()
-	try:
-		# Raises exception when accessing empty database.
-		time_lapse = start_time - TwitterAvailableWoeid.objects.all()[:1].get().created_at
-	except Exception, e:
-		time_lapse = timedelta(seconds=TIME_SPAN_SECONDS+1)
-
-	if time_lapse.seconds > TIME_SPAN_SECONDS:
-		try:
-			tokens = TwitterToken.objects.all()[0]
-			consumerKey = tokens.consumerKey
-			consumerSecret = tokens.consumerSecret
-			accessToken = tokens.accessToken
-			accessTokenSecret = tokens.accessTokenSecret
-			auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
-			auth.set_access_token(accessToken, accessTokenSecret)
-			api = tweepy.API(auth)
-			data = api.trends_available()
-			TwitterAvailableWoeid().clean()
-			for item in data:
-				TwitterAvailableWoeid(woeid=item[u'woeid']).save()
-		except Exception, e:
-			status = {u'success':False, u'updated':False, u'message':u'Error!! %s'%e}
-		else:
-			status = {u'success':True, u'updated':True, u'message':u'Successfully updated the database.'}
-	else:
-		status = {u'success':True, u'updated':False, u'message':'The database has been updated %s before.'%time_lapse}
-	return JsonResponse(status)
 
 
 
